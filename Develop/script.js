@@ -6,12 +6,14 @@ function generatePassword(){
   var specs = "!@#$%^&*()+-=_";
   var result = "";
 
+  console.log(alpha[3]);
+
   //boolean vars 
   var lcheck, ucheck, ncheck, scheck;
   
   //the prompts for the length of the password
   let lenPass = prompt("How long do you want the password to be? (8-128)");
-  
+  console.log(lenPass);
   //prompts to include (or not) lowercase, uppercase, numeric, and/or special characters
   //lower 
   let lowCase = prompt("Do you want lowercase characters? (Y or N)" );

@@ -4,11 +4,12 @@ function generatePassword(){
   var alpha = "abcdefghijklmnopqrstuvwxyz";
   var num = "0123456789";
   var specs = "!@#$%^&*()+-=_";
+  var result = "";
 
   console.log(alpha[3]);
 
   //boolean vars 
-  var lcheck, ucheck, scheck;
+  var lcheck, ucheck, ncheck, scheck;
   
   //the prompts for the length of the password
   let lenPass = prompt("How long do you want the password to be? (8-128)");
@@ -16,9 +17,9 @@ function generatePassword(){
   //prompts to include (or not) lowercase, uppercase, numeric, and/or special characters
   //lower 
   let lowCase = prompt("Do you want lowercase characters? (Y or N)" );
-  if ((lowCase == 'Y' || lowCase == 'y') ||(lowCase == 'N' || lowCase == 'n')){
+  if ((lowCase === 'Y' || lowCase === 'y') || (lowCase === 'N' || lowCase === 'n')){
 
-    if(lowCase == 'Y' || lowCase == 'y'){
+    if(lowCase === 'Y' || lowCase === 'y'){
       lcheck = true;
     }
     else{
@@ -28,19 +29,147 @@ function generatePassword(){
   }
   //upper
   let upCase = prompt("Do you want uppercase characters? (Y or N)");
+  if((upCase === 'Y' || upCase === 'y') || (upCase === 'N' || upCase === 'n')){
+    
+    if(upCase === 'Y' || upCase === 'y'){
+      ucheck = true;
+    }
+    else{
+      ucheck = false;
+    }
+  }
   //numeric
   let numCase = prompt("Do you want the password to be numeric? (Y or N)");
+
+  if((numCase === 'Y' || numCase === 'y') || (numCase === 'N' || numCase === 'n')){
+    
+    if(numCase === 'Y' || numCase === 'y'){
+      ncheck = true;
+    }
+    else{
+      ncheck = false;
+    }
+  }
   //special characeters
   let speCase = prompt("Do you want special chatracters? (Y or N)");
 
-  for(let x = 0; x <= lenPass;x++){
+  if((speCase === 'Y' || speCase === 'y') || (speCase === 'N' || speCase === 'n')){
     
-    //
+    if(speCase === 'Y' || speCase === 'y'){
+      scheck = true;
+    }
+    else{
+      scheck = false;
+    }
+  }
 
+  //loops for each result
+  //first case if all is true
+  if((lcheck === true && ucheck === true) && (ncheck === true && scheck === true) ){
+    for(let x = 0; x <= lenPass-1;x++){
+      //switch case that will randomize which character is picked
+      switch(Math.floor(Math.random()*4)){
+        //lower
+        case 0:
+          result += alpha[Math.floor(Math.random()*alpha.length)];
+          break;
+        //upper
+        case 1:
+          result += alpha[Math.floor(Math.random()*alpha.length)].toUpperCase();
+          break;
+        //number
+        case 2:
+          result += num[Math.floor(Math.random()*num.length)];
+          break;
+        //special
+        case 3:
+          result += specs[Math.floor(Math.random()*specs.length)];
+          break;
+          
 
+      }
+    }
+    return result;
+  }
+  //num and special are true
+  else if((lcheck === false && ucheck === false) && (ncheck === true && scheck === true)){
+    for(let x = 0; x <= lenPass-1;x++){
+    switch(Math.floor(Math.random()*2)){
+      //number
+      case 0:
+        result += num[Math.floor(Math.random()*num.length)];
+        break;
+      //special
+      case 1:
+        result += specs[Math.floor(Math.random()*specs.length)];
+        break;
+    }
+  }
+    return result;
+  }
+  //lower and upper are true
+  else if((lcheck === true && ucheck === true) && (ncheck === false && scheck === false)){
+    for(let x = 0; x <= lenPass-1;x++){
+    switch(Math.floor(Math.random()*2)){
+      //lower
+      case 0:
+        result += alpha[Math.floor(Math.random()*num.length)];
+        break;
+      //upper
+      case 1:
+        result += alpha[Math.floor(Math.random()*specs.length)].toUpperCase();
+        break;
+    }
+  }
+    return result;
+  }
+  //lower, number, and special are true
+  else if((lcheck === true || ucheck === false) && (ncheck === true && scheck === true)){
+    for(let x = 0; x <= lenPass-1;x++){
+    switch(Math.floor(Math.random()*3)){
+      //lower
+      case 0:
+        result += alpha[Math.floor(Math.random()*alpha.length)];
+        break;
+      //number
+      case 1:
+        result += num[Math.floor(Math.random()*num.length)];
+        break;
+      //special
+      case 2:
+        result += specs[Math.floor(Math.random()*specs.length)];
+        break;
+    }
+  }
+    return result;
+  }
+  //lower, upper, and number are true 
+  else if((lcheck === true && ucheck === true) && (ncheck === true || scheck === false)){
+    for(let x = 0; x <= lenPass-1;x++){
+    switch(Math.floor(Math.random()*3)){
+      //lower
+      case 0:
+        result += alpha[Math.floor(Math.random()*alpha.length)];
+        break;
+      //upper
+      case 1:
+        result += alpha[Math.floor(Math.random()*alpha.length)].toUpperCase();
+        break;
+      //number
+      case 2:
+        result += num[Math.floor(Math.random()*num.length)];
+        break;
+    }
+  }
+    return result;
   }
 
 
+  
+
+
+  console.log(result);
+  return result;
 }
 
 // Get references to the #generate element

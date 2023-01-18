@@ -87,9 +87,11 @@ function generatePassword(){
 
       }
     }
+    return result;
   }
   //num and special are true
   else if((lcheck === false && ucheck === false) && (ncheck === true && scheck === true)){
+    for(let x = 0; x <= lenPass-1;x++){
     switch(Math.floor(Math.random()*2)){
       //number
       case 0:
@@ -101,8 +103,11 @@ function generatePassword(){
         break;
     }
   }
+    return result;
+  }
   //lower and upper are true
   else if((lcheck === true && ucheck === true) && (ncheck === false && scheck === false)){
+    for(let x = 0; x <= lenPass-1;x++){
     switch(Math.floor(Math.random()*2)){
       //lower
       case 0:
@@ -114,8 +119,11 @@ function generatePassword(){
         break;
     }
   }
+    return result;
+  }
   //lower, number, and special are true
   else if((lcheck === true || ucheck === false) && (ncheck === true && scheck === true)){
+    for(let x = 0; x <= lenPass-1;x++){
     switch(Math.floor(Math.random()*3)){
       //lower
       case 0:
@@ -131,8 +139,11 @@ function generatePassword(){
         break;
     }
   }
+    return result;
+  }
   //lower, upper, and number are true 
   else if((lcheck === true && ucheck === true) && (ncheck === true || scheck === false)){
+    for(let x = 0; x <= lenPass-1;x++){
     switch(Math.floor(Math.random()*3)){
       //lower
       case 0:
@@ -147,6 +158,8 @@ function generatePassword(){
         result += num[Math.floor(Math.random()*num.length)];
         break;
     }
+  }
+    return result;
   }
 
 
